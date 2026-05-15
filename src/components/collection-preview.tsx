@@ -6,22 +6,22 @@ import { SectionReveal } from "@/components/section-reveal";
 const categories = [
   {
     title: "Performance Tees",
-    tag: "Engineered to Move",
+    tag: "Move With You",
     gradient: "from-zinc-800 via-zinc-900 to-zinc-950",
   },
   {
     title: "Training Tanks",
-    tag: "No Sleeves No Limits",
+    tag: "Lighter. Looser. Yours.",
     gradient: "from-zinc-700 via-zinc-800 to-zinc-950",
   },
   {
     title: "Training Joggers",
-    tag: "Built for the Grind",
+    tag: "For Every Mile",
     gradient: "from-zinc-800 via-zinc-900 to-zinc-950",
   },
   {
     title: "Training Shorts",
-    tag: "Move Without Limits",
+    tag: "Made for the Run",
     gradient: "from-zinc-700 via-zinc-800 to-zinc-950",
   },
 ];
@@ -36,7 +36,7 @@ export function CollectionPreview() {
               Collection 01
             </p>
             <h2 className="font-display text-[clamp(1.6rem,3vw,2.4rem)] font-normal tracking-tight text-zinc-200">
-              The First Drop
+              What&apos;s Dropping
             </h2>
           </div>
         </SectionReveal>

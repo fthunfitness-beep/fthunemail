@@ -8,25 +8,25 @@ export function BrandStatement() {
       <div className="mx-auto max-w-4xl text-center">
         <SectionReveal>
           <p className="mb-8 text-[9px] font-medium uppercase tracking-[0.25em] text-zinc-600">
-            The Philosophy
+            The Movement
           </p>
         </SectionReveal>
 
         <SectionReveal delay={0.1}>
           <h2 className="font-display text-[clamp(1.8rem,4vw,3.2rem)] font-normal leading-[1.1] tracking-tight text-zinc-200">
-            We don&apos;t make athleisure.
+            We&apos;re not selling a look.
             <br className="hidden sm:block" />
-            We engineer performance wear
+            We&apos;re building something
             <br className="hidden sm:block" />
-            for people who show up.
+            for everyone who shows up.
           </h2>
         </SectionReveal>
 
         <SectionReveal delay={0.2}>
-          <p className="mx-auto mt-8 max-w-lg text-sm leading-relaxed text-zinc-600">
-            Every thread, every seam — built for the 5AM sessions, the cold
-            mornings, the extra reps nobody sees. Designed in Pakistan. Tested
-            in the gym.
+          <p className="mx-auto mt-8 max-w-lg text-sm leading-relaxed text-zinc-500">
+            For the 5AM sessions. The slow comebacks. The long runs nobody sees.
+            Made in Pakistan, made for the long haul — and made with you in mind.
+            You&apos;re not just buying kit. You&apos;re joining the run.
           </p>
         </SectionReveal>
       </div>

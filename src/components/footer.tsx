@@ -18,8 +18,8 @@ export function Footer() {
             <p className="font-display text-lg tracking-[0.2em] text-white">
               FTHUN
             </p>
-            <p className="mt-3 text-xs text-zinc-700">
-              Performance Wear Engineered for the Grind
+            <p className="mt-3 text-xs text-zinc-600">
+              Made in Pakistan. Made for the movement.
             </p>
 
             {/* Social */}

@@ -21,7 +21,7 @@ export function Navbar() {
           href="#waitlist"
           className="text-[10px] font-medium uppercase tracking-[0.12em] text-zinc-500 transition-colors hover:text-white"
         >
-          Join Waitlist
+          Join the Movement
         </a>
       </div>
     </motion.nav>

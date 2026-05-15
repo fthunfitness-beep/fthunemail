@@ -53,8 +53,8 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.9 }}
             className="mt-8 max-w-md text-sm leading-relaxed text-white/80"
           >
-            Performance wear engineered in Pakistan for the grind.
-            No fluff. Pure function. Dropping soon.
+            Made in Pakistan, for everyone chasing better.
+            Join the movement before the first drop lands.
           </motion.p>
 
           <motion.div

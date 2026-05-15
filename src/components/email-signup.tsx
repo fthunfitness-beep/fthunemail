@@ -50,13 +50,14 @@ export function EmailSignup() {
       <div className="mx-auto max-w-xl text-center">
         <SectionReveal>
           <p className="mb-3 text-[9px] font-medium uppercase tracking-[0.25em] text-zinc-600">
-            Early Access
+            Join Us
           </p>
           <h2 className="font-display text-[clamp(1.6rem,3vw,2.4rem)] font-normal tracking-tight text-zinc-200">
-            Get On The List
+            Be Part of the First Drop
           </h2>
-          <p className="mt-4 text-sm text-zinc-600">
-            Be first to shop when Collection 01 drops. No spam. Just the drop.
+          <p className="mt-4 text-sm text-zinc-500">
+            We&apos;re building this together. Get early access when Collection 01
+            lands, plus behind-the-scenes from the build.
           </p>
         </SectionReveal>
 
@@ -107,7 +108,7 @@ export function EmailSignup() {
                     {status === "loading" ? (
                       <Loader2 className="h-3 w-3 animate-spin" />
                     ) : (
-                      <span>Join Waitlist</span>
+                      <span>Count Me In</span>
                     )}
                   </Button>
 
