@@ -1,20 +1,32 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Volume2, VolumeX } from "lucide-react";
 
 export function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [muted, setMuted] = useState(true);
+
+  function toggleSound() {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setMuted(v.muted);
+  }
+
   return (
-    <section className="relative flex min-h-screen items-end overflow-hidden">
-      {/* Full-screen video background */}
+    <section className="relative flex min-h-screen items-end overflow-hidden bg-black">
+      {/* Full-screen video background — contain so nothing is cropped */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
         preload="auto"
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-contain"
       >
         <source src="/hero.mp4" type="video/mp4" />
       </video>
@@ -71,6 +83,20 @@ export function Hero() {
           </motion.div>
         </div>
       </div>
+
+      {/* Sound toggle (browsers block autoplay-with-sound, so user has to tap) */}
+      <button
+        type="button"
+        onClick={toggleSound}
+        aria-label={muted ? "Unmute video" : "Mute video"}
+        className="absolute right-6 top-20 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-colors hover:bg-black/60 lg:right-8"
+      >
+        {muted ? (
+          <VolumeX className="h-4 w-4" />
+        ) : (
+          <Volume2 className="h-4 w-4" />
+        )}
+      </button>
 
       {/* Scroll indicator */}
       <motion.div
