@@ -6,6 +6,14 @@ import { cookies } from "next/headers";
 import { supabase } from "@/lib/supabase";
 import { resend } from "@/lib/resend";
 import { ADMIN_COOKIE, isAuthenticated } from "@/lib/admin-auth";
+import { nameFromEmail } from "@/lib/name-from-email";
+
+function personalize(template: string, email: string): string {
+  const name = nameFromEmail(email);
+  return template
+    .replaceAll("{{name}}", name)
+    .replaceAll("{{email}}", email);
+}
 
 async function requireAuth() {
   if (!(await isAuthenticated())) {
@@ -61,7 +69,12 @@ export async function sendBroadcastAction(formData: FormData) {
   let failures = 0;
   for (const batch of chunk(emails, BATCH)) {
     try {
-      const payload = batch.map((to) => ({ from: FROM, to, subject, html }));
+      const payload = batch.map((to) => ({
+        from: FROM,
+        to,
+        subject: personalize(subject, to),
+        html: personalize(html, to),
+      }));
       const { data, error } = await resend.batch.send(payload);
       if (error) {
         failures += batch.length;

@@ -60,11 +60,14 @@ export function BroadcastForm({ subscriberCount }: { subscriberCount: number }) 
         <label className="mb-2 block text-xs uppercase tracking-wider text-zinc-500">
           Body (HTML supported)
         </label>
+        <p className="mb-2 text-[11px] text-zinc-600">
+          Personalize with <code className="text-zinc-400">{`{{name}}`}</code> (derived from email, e.g. <code className="text-zinc-400">rockstar@…</code> → <code className="text-zinc-400">rockstar</code>) or <code className="text-zinc-400">{`{{email}}`}</code>.
+        </p>
         <textarea
           value={html}
           onChange={(e) => setHtml(e.target.value)}
           rows={10}
-          placeholder="<p>Plain text works fine. Or paste any HTML.</p>"
+          placeholder="Hey {{name}}, the drop is almost here..."
           required
           className="w-full rounded-none border border-zinc-800 bg-zinc-950 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-white focus:outline-none"
         />
