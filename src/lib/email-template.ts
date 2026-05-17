@@ -51,7 +51,7 @@ export function getWelcomeEmailHtml(email: string): string {
           <!-- CTA -->
           <tr>
             <td align="center" style="padding-bottom:48px;">
-              <a href="${process.env.NEXT_PUBLIC_SITE_URL || "https://fthun.com"}"
+              <a href="${process.env.NEXT_PUBLIC_SITE_URL || "https://fthun.xyz"}"
                 style="display:inline-block;padding:14px 36px;background-color:#FAFAFA;color:#09090B;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">
                 Visit FTHUN
               </a>

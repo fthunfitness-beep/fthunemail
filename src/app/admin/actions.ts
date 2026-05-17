@@ -28,7 +28,7 @@ export async function deleteSignupAction(id: string) {
   return { ok: true };
 }
 
-const FROM = "FTHUN <noreply@fthun.com>";
+const FROM = "FTHUN <noreply@fthun.xyz>";
 const BATCH = 100; // Resend batch.send max
 const DELAY_MS = 1100; // stay under 2 req/sec Resend rate limit
 

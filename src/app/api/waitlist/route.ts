@@ -44,7 +44,7 @@ export async function POST(request: Request) {
 
     try {
       await resend.emails.send({
-        from: "FTHUN <noreply@fthun.com>",
+        from: "FTHUN <noreply@fthun.xyz>",
         to: email,
         subject: "You're In — Early Access Confirmed",
         html: getWelcomeEmailHtml(email),

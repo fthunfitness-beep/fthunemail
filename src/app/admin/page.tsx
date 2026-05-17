@@ -111,7 +111,7 @@ export default async function AdminPage() {
           <h2 className="mb-1 font-serif text-lg">Broadcast email</h2>
           <p className="mb-4 text-xs text-zinc-500">
             Sends from{" "}
-            <span className="font-mono text-zinc-400">noreply@fthun.com</span>{" "}
+            <span className="font-mono text-zinc-400">noreply@fthun.xyz</span>{" "}
             to every subscriber. Use sparingly — Resend free tier is 100/day,
             3,000/month.
           </p>
