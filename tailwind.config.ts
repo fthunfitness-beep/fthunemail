@@ -6,9 +6,13 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-playfair)", "Georgia", "serif"],
+        display: ["var(--font-space-grotesk)", "var(--font-inter)", "system-ui", "sans-serif"],
       },
       colors: {
+        brand: {
+          DEFAULT: "#E63946",
+          dark: "#B81E2A",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

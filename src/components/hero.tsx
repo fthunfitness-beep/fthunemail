@@ -31,49 +31,37 @@ export function Hero() {
         <source src="/hero.mp4" type="video/mp4" />
       </video>
 
-      {/* Overlays for text legibility */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/90" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent" />
-      <div className="spotlight absolute inset-0" />
+      {/* Minimal bottom-gradient overlay — keeps video readable but lets it breathe */}
+      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-black/70 to-transparent" />
 
-      {/* Content */}
-      <div className="relative z-10 w-full px-6 pb-24 pt-32 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-6 text-[10px] font-medium uppercase tracking-[0.3em] text-white/70"
-          >
-            FTHUN — Collection 01
-          </motion.p>
+      {/* Content — sits as a slim strip across the bottom */}
+      <div className="relative z-10 w-full px-6 pb-10 lg:px-8 lg:pb-14">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mb-3 text-[10px] font-medium uppercase tracking-[0.3em] text-brand"
+            >
+              FTHUN · Collection 01
+            </motion.p>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-[clamp(3rem,8vw,7rem)] font-normal leading-[0.9] tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.5)]"
-          >
-            BUILT FOR THE
-            <br />
-            ONES WHO SHOW UP.
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="mt-8 max-w-md text-sm leading-relaxed text-white/80"
-          >
-            Made in Pakistan, for everyone chasing better.
-            Join the movement before the first drop lands.
-          </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="font-display text-[clamp(1.5rem,3.2vw,2.75rem)] font-medium leading-[1.05] tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)]"
+            >
+              Built for the ones who show up.
+            </motion.h1>
+          </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.1 }}
-            className="mt-10"
+            transition={{ duration: 0.8, delay: 0.9 }}
+            className="shrink-0"
           >
             <Button size="lg" asChild>
               <a href="#waitlist">
@@ -103,13 +91,13 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-3 left-1/2 -translate-x-1/2"
       >
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
         >
-          <ArrowDown className="h-4 w-4 text-white/60" />
+          <ArrowDown className="h-3.5 w-3.5 text-white/40" />
         </motion.div>
       </motion.div>
     </section>

@@ -13,13 +13,13 @@ export function Navbar() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
         <a
           href="/"
-          className="font-display text-lg tracking-[0.2em] text-white"
+          className="font-display text-lg font-semibold tracking-[0.18em] text-brand"
         >
           FTHUN
         </a>
         <a
           href="#waitlist"
-          className="text-[10px] font-medium uppercase tracking-[0.12em] text-zinc-500 transition-colors hover:text-white"
+          className="text-[10px] font-medium uppercase tracking-[0.12em] text-zinc-400 transition-colors hover:text-brand"
         >
           Join the Movement
         </a>
