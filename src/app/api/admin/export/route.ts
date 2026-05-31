@@ -5,7 +5,10 @@ import { isAuthenticated } from "@/lib/admin-auth";
 export const dynamic = "force-dynamic";
 
 function csvEscape(v: unknown): string {
-  const s = String(v ?? "");
+  let s = String(v ?? "");
+  if (/^[=+\-@\t\r]/.test(s)) {
+    s = `'${s}`;
+  }
   if (/[",\n\r]/.test(s)) {
     return `"${s.replace(/"/g, '""')}"`;
   }
