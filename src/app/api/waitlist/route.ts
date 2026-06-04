@@ -19,27 +19,6 @@ export async function POST(request: Request) {
       );
     }
 
-    const { data: existing, error: existingError } = await supabase
-      .from("waitlist")
-      .select("id")
-      .eq("email", email)
-      .maybeSingle();
-
-    if (existingError) {
-      console.error("Supabase duplicate check error:", existingError);
-      return NextResponse.json(
-        { error: "Something went wrong. Try again." },
-        { status: 500 },
-      );
-    }
-
-    if (existing) {
-      return NextResponse.json(
-        { error: "You're already on the list" },
-        { status: 409 },
-      );
-    }
-
     const { error: insertError } = await supabase
       .from("waitlist")
       .insert({ email, source: "landing_page" });

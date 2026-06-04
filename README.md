@@ -42,6 +42,7 @@ cp .env.example .env.local
 |----------|-------------|
 | `SUPABASE_URL` | Your Supabase project URL |
 | `SUPABASE_SERVICE_ROLE_KEY` | Service role key (server-side only) |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Optional fallback for public signups only |
 | `RESEND_API_KEY` | Resend API key |
 | `RESEND_FROM` | Sender identity, e.g. `FTHUN <noreply@fthun.xyz>` |
 | `NEXT_PUBLIC_DROP_DATE` | Countdown target (ISO 8601, e.g. `2026-07-01T00:00:00.000Z`) |
