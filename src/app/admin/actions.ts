@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { supabase } from "@/lib/supabase";
-import { resend } from "@/lib/resend";
+import { getResendClient, RESEND_FROM } from "@/lib/resend";
 import { ADMIN_COOKIE, isAuthenticated } from "@/lib/admin-auth";
 import { nameFromEmail } from "@/lib/name-from-email";
 
@@ -36,7 +36,6 @@ export async function deleteSignupAction(id: string) {
   return { ok: true };
 }
 
-const FROM = "FTHUN <noreply@fthun.xyz>";
 const BATCH = 100; // Resend batch.send max
 const DELAY_MS = 1100; // stay under 2 req/sec Resend rate limit
 
@@ -55,6 +54,11 @@ export async function sendBroadcastAction(formData: FormData) {
     return { error: "Subject and body are required." };
   }
 
+  const resend = getResendClient();
+  if (!resend) {
+    return { error: "Missing RESEND_API_KEY." };
+  }
+
   // Pull every subscriber
   const { data: subs, error: subsErr } = await supabase
     .from("waitlist")
@@ -70,7 +74,7 @@ export async function sendBroadcastAction(formData: FormData) {
   for (const batch of chunk(emails, BATCH)) {
     try {
       const payload = batch.map((to) => ({
-        from: FROM,
+        from: RESEND_FROM,
         to,
         subject: personalize(subject, to),
         html: personalize(html, to),

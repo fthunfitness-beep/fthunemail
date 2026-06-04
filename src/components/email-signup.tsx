@@ -8,10 +8,12 @@ import { SectionReveal } from "@/components/section-reveal";
 import { Check, Loader2 } from "lucide-react";
 
 type Status = "idle" | "loading" | "success" | "error";
+type EmailStatus = "sent" | "failed" | "skipped";
 
 export function EmailSignup() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
+  const [emailStatus, setEmailStatus] = useState<EmailStatus | null>(null);
   const [message, setMessage] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
@@ -19,6 +21,7 @@ export function EmailSignup() {
     if (!email.trim()) return;
 
     setStatus("loading");
+    setEmailStatus(null);
 
     try {
       const res = await fetch("/api/waitlist", {
@@ -32,6 +35,7 @@ export function EmailSignup() {
       if (res.ok) {
         setStatus("success");
         setMessage(data.message);
+        setEmailStatus(data.emailStatus ?? null);
         setEmail("");
       } else {
         setStatus("error");
@@ -78,7 +82,9 @@ export function EmailSignup() {
                   </div>
                   <p className="text-sm font-medium text-white">{message}</p>
                   <p className="mt-2 text-xs text-zinc-600">
-                    Check your inbox for confirmation
+                    {emailStatus === "sent"
+                      ? "Check your inbox for confirmation"
+                      : "You're saved. We'll follow up soon."}
                   </p>
                 </motion.div>
               ) : (

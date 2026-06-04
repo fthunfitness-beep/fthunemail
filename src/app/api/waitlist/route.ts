@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
-import { resend } from "@/lib/resend";
+import { getResendClient, RESEND_FROM } from "@/lib/resend";
 import { getWelcomeEmailHtml } from "@/lib/email-template";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
   try {
@@ -17,11 +19,19 @@ export async function POST(request: Request) {
       );
     }
 
-    const { data: existing } = await supabase
+    const { data: existing, error: existingError } = await supabase
       .from("waitlist")
       .select("id")
       .eq("email", email)
-      .single();
+      .maybeSingle();
+
+    if (existingError) {
+      console.error("Supabase duplicate check error:", existingError);
+      return NextResponse.json(
+        { error: "Something went wrong. Try again." },
+        { status: 500 },
+      );
+    }
 
     if (existing) {
       return NextResponse.json(
@@ -36,25 +46,52 @@ export async function POST(request: Request) {
 
     if (insertError) {
       console.error("Supabase insert error:", insertError);
+      if (insertError.code === "23505") {
+        return NextResponse.json(
+          { error: "You're already on the list" },
+          { status: 409 },
+        );
+      }
       return NextResponse.json(
         { error: "Something went wrong. Try again." },
         { status: 500 },
       );
     }
 
-    try {
-      await resend.emails.send({
-        from: "FTHUN <noreply@fthun.xyz>",
-        to: email,
-        subject: "You're In — Early Access Confirmed",
-        html: getWelcomeEmailHtml(email),
+    const resend = getResendClient();
+    if (!resend) {
+      console.error("Resend config error: missing RESEND_API_KEY");
+      return NextResponse.json({
+        message: "You're on the list. Confirmation email is delayed.",
+        emailStatus: "skipped",
       });
-    } catch (emailError) {
-      console.error("Resend email error:", emailError);
     }
 
-    return NextResponse.json({ message: "You're on the list" });
-  } catch {
+    const { error: emailError } = await resend.emails.send({
+      from: RESEND_FROM,
+      to: email,
+      subject: "You're In - Early Access Confirmed",
+      html: getWelcomeEmailHtml(email),
+    });
+
+    if (emailError) {
+      console.error("Resend email error:", {
+        message: emailError.message,
+        name: emailError.name,
+        from: RESEND_FROM,
+      });
+      return NextResponse.json({
+        message: "You're on the list. Confirmation email is delayed.",
+        emailStatus: "failed",
+      });
+    }
+
+    return NextResponse.json({
+      message: "You're on the list. Check your inbox for confirmation.",
+      emailStatus: "sent",
+    });
+  } catch (error) {
+    console.error("Waitlist route error:", error);
     return NextResponse.json(
       { error: "Something went wrong. Try again." },
       { status: 500 },

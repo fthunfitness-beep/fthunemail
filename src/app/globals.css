@@ -90,13 +90,8 @@
   }
 
   .sneak-peek-image {
-    filter: saturate(0.82) contrast(1.08) brightness(0.72);
+    filter: saturate(0.9) contrast(1.04) brightness(0.96);
     opacity: 1;
-  }
-
-  .sneak-peek-image + .sneak-peek-image {
-    animation: sneak-peek-fade 8.8s infinite;
-    opacity: 0;
   }
 
   .sneak-peek-grain::before {
@@ -107,17 +102,4 @@
     pointer-events: none;
   }
 
-  @keyframes sneak-peek-fade {
-    0%,
-    42% {
-      opacity: 1;
-    }
-    50%,
-    92% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
 }

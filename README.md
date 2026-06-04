@@ -40,10 +40,12 @@ cp .env.example .env.local
 
 | Variable | Description |
 |----------|-------------|
-| `NEXT_PUBLIC_SUPABASE_URL` | Your Supabase project URL |
+| `SUPABASE_URL` | Your Supabase project URL |
 | `SUPABASE_SERVICE_ROLE_KEY` | Service role key (server-side only) |
 | `RESEND_API_KEY` | Resend API key |
+| `RESEND_FROM` | Sender identity, e.g. `FTHUN <noreply@fthun.xyz>` |
 | `NEXT_PUBLIC_DROP_DATE` | Countdown target (ISO 8601, e.g. `2026-07-01T00:00:00.000Z`) |
+| `NEXT_PUBLIC_SITE_URL` | Public site URL, e.g. `https://fthun.xyz` |
 
 ### 3. Supabase Setup
 
@@ -57,7 +59,7 @@ cp .env.example .env.local
 1. Create an account at [resend.com](https://resend.com)
 2. Verify your sending domain (or use the free `onboarding@resend.dev` for testing)
 3. Create an API key and add it to `.env.local`
-4. Update the `from` address in `src/app/api/waitlist/route.ts` to your verified domain
+4. Set `RESEND_FROM` to an address on your verified domain
 
 ### 5. Run Dev Server
 
