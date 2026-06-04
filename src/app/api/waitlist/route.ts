@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { getSupabaseClient } from "@/lib/supabase";
 import { getResendClient, RESEND_FROM } from "@/lib/resend";
 import { getWelcomeEmailHtml } from "@/lib/email-template";
 
@@ -19,6 +19,18 @@ export async function POST(request: Request) {
       );
     }
 
+    const supabase = getSupabaseClient();
+    if (!supabase) {
+      console.error("Waitlist config error: missing Supabase config");
+      return NextResponse.json(
+        {
+          error: "Something went wrong. Try again.",
+          code: "supabase_config_missing",
+        },
+        { status: 500 },
+      );
+    }
+
     const { error: insertError } = await supabase
       .from("waitlist")
       .insert({ email, source: "landing_page" });
@@ -32,7 +44,10 @@ export async function POST(request: Request) {
         );
       }
       return NextResponse.json(
-        { error: "Something went wrong. Try again." },
+        {
+          error: "Something went wrong. Try again.",
+          code: `supabase_insert_${insertError.code ?? "unknown"}`,
+        },
         { status: 500 },
       );
     }

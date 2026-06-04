@@ -1,5 +1,5 @@
 import { Download, LogOut } from "lucide-react";
-import { supabase } from "@/lib/supabase";
+import { requireSupabaseClient } from "@/lib/supabase";
 import { logoutAction } from "./actions";
 import { SignupsTable } from "./signups-table";
 import { BroadcastForm } from "./broadcast-form";
@@ -21,6 +21,7 @@ type Broadcast = {
 };
 
 async function getData() {
+  const supabase = requireSupabaseClient();
   const [signupsRes, broadcastsRes] = await Promise.all([
     supabase
       .from("waitlist")

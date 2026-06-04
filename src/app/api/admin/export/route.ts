@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { requireSupabaseClient } from "@/lib/supabase";
 import { isAuthenticated } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
@@ -20,6 +20,7 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const supabase = requireSupabaseClient();
   const { data, error } = await supabase
     .from("waitlist")
     .select("email, source, created_at")

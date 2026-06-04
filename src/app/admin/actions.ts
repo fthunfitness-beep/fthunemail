@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import { supabase } from "@/lib/supabase";
+import { requireSupabaseClient } from "@/lib/supabase";
 import { getResendClient, RESEND_FROM } from "@/lib/resend";
 import { ADMIN_COOKIE, isAuthenticated } from "@/lib/admin-auth";
 import { nameFromEmail } from "@/lib/name-from-email";
@@ -30,6 +30,7 @@ export async function logoutAction() {
 export async function deleteSignupAction(id: string) {
   await requireAuth();
   if (!id) return { error: "Missing id" };
+  const supabase = requireSupabaseClient();
   const { error } = await supabase.from("waitlist").delete().eq("id", id);
   if (error) return { error: error.message };
   revalidatePath("/admin");
@@ -59,6 +60,7 @@ export async function sendBroadcastAction(formData: FormData) {
     return { error: "Missing RESEND_API_KEY." };
   }
 
+  const supabase = requireSupabaseClient();
   // Pull every subscriber
   const { data: subs, error: subsErr } = await supabase
     .from("waitlist")
