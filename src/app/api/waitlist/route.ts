@@ -47,6 +47,7 @@ export async function POST(request: Request) {
         {
           error: "Something went wrong. Try again.",
           code: `supabase_insert_${insertError.code ?? "unknown"}`,
+          detail: insertError.message,
         },
         { status: 500 },
       );
