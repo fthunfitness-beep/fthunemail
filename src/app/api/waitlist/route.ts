@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 import { getSupabaseClient } from "@/lib/supabase";
 import { getResendClient, RESEND_FROM } from "@/lib/resend";
-import { getWelcomeEmailHtml } from "@/lib/email-template";
+import {
+  getWelcomeEmailHtml,
+  getWelcomeEmailText,
+} from "@/lib/email-template";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -35,21 +38,20 @@ export async function POST(request: Request) {
       .from("waitlist")
       .insert({ email, source: "landing_page" });
 
+    let wasAlreadyListed = false;
     if (insertError) {
       console.error("Supabase insert error:", insertError);
       if (insertError.code === "23505") {
+        wasAlreadyListed = true;
+      } else {
         return NextResponse.json(
-          { error: "You're already on the list" },
-          { status: 409 },
+          {
+            error: "Something went wrong. Try again.",
+            code: `supabase_insert_${insertError.code ?? "unknown"}`,
+          },
+          { status: 500 },
         );
       }
-      return NextResponse.json(
-        {
-          error: "Something went wrong. Try again.",
-          code: `supabase_insert_${insertError.code ?? "unknown"}`,
-        },
-        { status: 500 },
-      );
     }
 
     const resend = getResendClient();
@@ -64,8 +66,9 @@ export async function POST(request: Request) {
     const { error: emailError } = await resend.emails.send({
       from: RESEND_FROM,
       to: email,
-      subject: "You're In - Early Access Confirmed",
+      subject: "FTHUN waitlist confirmation",
       html: getWelcomeEmailHtml(email),
+      text: getWelcomeEmailText(email),
     });
 
     if (emailError) {
@@ -81,7 +84,9 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({
-      message: "You're on the list. Check your inbox for confirmation.",
+      message: wasAlreadyListed
+        ? "You're already on the list. Check your inbox for confirmation."
+        : "You're on the list. Check your inbox for confirmation.",
       emailStatus: "sent",
     });
   } catch (error) {

@@ -120,3 +120,25 @@ export function getWelcomeEmailHtml(email: string): string {
 </body>
 </html>`.trim();
 }
+
+export function getWelcomeEmailText(email: string): string {
+  const name = nameFromEmail(email);
+  const days = daysUntilDrop();
+  const dropLine = days
+    ? `The first drop is ${days} days out.`
+    : "The first drop is coming.";
+
+  return [
+    `Hey ${name},`,
+    "",
+    "Welcome to FTHUN. You're in early - part of a small group watching this come together from the inside.",
+    "",
+    `${dropLine} Until then, the build is happening on Instagram - fabric, fit sessions, prints, behind the scenes.`,
+    "",
+    "Follow @fthunofficial:",
+    INSTAGRAM_URL,
+    "",
+    "See you on the inside.",
+    "- FTHUN",
+  ].join("\n");
+}
