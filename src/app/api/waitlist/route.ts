@@ -66,7 +66,7 @@ export async function POST(request: Request) {
     const { error: emailError } = await resend.emails.send({
       from: RESEND_FROM,
       to: email,
-      subject: "FTHUN waitlist confirmation",
+      subject: "You kept showing up",
       html: getWelcomeEmailHtml(email),
       text: getWelcomeEmailText(email),
     });
