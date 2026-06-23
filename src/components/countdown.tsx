@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { SectionReveal } from "@/components/section-reveal";
+import { getLaunchDate } from "@/lib/launch";
 
 interface TimeLeft {
   days: number;
@@ -29,9 +30,7 @@ export function Countdown() {
   const [time, setTime] = useState<TimeLeft | null>(null);
 
   useEffect(() => {
-    const target = new Date(
-      process.env.NEXT_PUBLIC_DROP_DATE || "2026-07-01T00:00:00.000Z",
-    );
+    const target = getLaunchDate();
 
     setTime(getTimeRemaining(target));
 
@@ -61,17 +60,23 @@ export function Countdown() {
       <div className="mx-auto max-w-7xl text-center">
         <SectionReveal>
           <p className="mb-3 text-[9px] font-medium uppercase tracking-[0.25em] text-zinc-600">
-            Collection 01 Launch
+            Forty Days Out
           </p>
           <h2 className="font-display text-[clamp(1.6rem,3vw,2.4rem)] font-normal tracking-tight text-zinc-200">
-            The Countdown
+            The First Drop Is Being Earned
           </h2>
         </SectionReveal>
 
         <SectionReveal delay={0.15}>
-          <div className="mx-auto mt-12 flex max-w-lg justify-center gap-3 sm:gap-6">
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-zinc-600">
+            Forty days to sharpen the fit, the fabric, and the standard.
+          </p>
+          <div className="mx-auto mt-10 flex max-w-lg justify-center gap-3 sm:gap-6">
             {blocks.map((block) => (
-              <div key={block.label} className="glass flex-1 px-4 py-6 sm:px-6 sm:py-8">
+              <div
+                key={block.label}
+                className="glass flex-1 px-4 py-6 transition-colors duration-300 hover:border-brand/30 sm:px-6 sm:py-8"
+              >
                 <p className="font-display text-[clamp(1.8rem,4vw,3rem)] font-normal tracking-tight text-white tabular-nums">
                   {block.value}
                 </p>

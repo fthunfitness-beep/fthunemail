@@ -13,19 +13,27 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "FTHUN — Performance Wear Engineered for the Grind",
+  title: "FTHUN - Built for the Days You Refuse to Quit",
   description:
-    "Premium performance gymwear designed in Pakistan. Join the waitlist for early access to Collection 01.",
+    "Performance gymwear designed in Pakistan for the reps, restarts, and sessions that do not get seen.",
   keywords: ["gymwear", "performance wear", "Pakistan", "athletic", "streetwear"],
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
   openGraph: {
-    title: "FTHUN — The Drop Is Coming",
-    description: "Premium performance wear. Collection 01 launching soon.",
+    title: "FTHUN - The First Drop Is Being Earned",
+    description: "Built for the days you refuse to quit.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "FTHUN — The Drop Is Coming",
-    description: "Premium performance wear. Collection 01 launching soon.",
+    title: "FTHUN - The First Drop Is Being Earned",
+    description: "Built for the days you refuse to quit.",
   },
 };
 

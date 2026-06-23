@@ -3,9 +3,7 @@
 import { SectionReveal } from "@/components/section-reveal";
 
 const socialLinks = [
-  { name: "Instagram", href: "#" },
-  { name: "TikTok", href: "#" },
-  { name: "Twitter", href: "#" },
+  { name: "@fthunofficial", href: "https://instagram.com/fthunofficial" },
 ];
 
 export function Footer() {
@@ -19,7 +17,7 @@ export function Footer() {
               FTHUN
             </p>
             <p className="mt-3 text-xs text-zinc-600">
-              Made in Pakistan. Made for the movement.
+              Made in Pakistan. Made for the ones who keep going.
             </p>
 
             {/* Social */}
@@ -28,9 +26,11 @@ export function Footer() {
                 <a
                   key={link.name}
                   href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
                   className="text-[10px] font-medium uppercase tracking-[0.1em] text-zinc-600 transition-colors hover:text-white"
                 >
-                  {link.name}
+                  Instagram · {link.name}
                 </a>
               ))}
             </div>

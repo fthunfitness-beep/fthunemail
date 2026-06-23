@@ -17,12 +17,22 @@ export function Navbar() {
         >
           FTHUN
         </a>
-        <a
-          href="#waitlist"
-          className="text-[10px] font-medium uppercase tracking-[0.12em] text-zinc-400 transition-colors hover:text-brand"
-        >
-          Join the Movement
-        </a>
+        <div className="flex items-center gap-5">
+          <a
+            href="https://instagram.com/fthunofficial"
+            target="_blank"
+            rel="noreferrer"
+            className="hidden text-[10px] font-medium uppercase tracking-[0.12em] text-zinc-600 transition-colors hover:text-brand sm:inline"
+          >
+            @fthunofficial
+          </a>
+          <a
+            href="#waitlist"
+            className="text-[10px] font-medium uppercase tracking-[0.12em] text-zinc-400 transition-colors hover:text-brand"
+          >
+            Join the Movement
+          </a>
+        </div>
       </div>
     </motion.nav>
   );

@@ -45,7 +45,6 @@ cp .env.example .env.local
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Optional fallback for public signups only |
 | `RESEND_API_KEY` | Resend API key |
 | `RESEND_FROM` | Sender identity, e.g. `FTHUN <noreply@fthun.xyz>` |
-| `NEXT_PUBLIC_DROP_DATE` | Countdown target (ISO 8601, e.g. `2026-07-01T00:00:00.000Z`) |
 | `NEXT_PUBLIC_SITE_URL` | Public site URL, e.g. `https://fthun.xyz` |
 
 ### 3. Supabase Setup
@@ -116,7 +115,7 @@ fthun-landing/
 | **Hero** | Full-viewport cinematic intro with spotlight gradient |
 | **Brand Statement** | Editorial serif typography, brand philosophy |
 | **Collection Preview** | 4-category grid with hover animations |
-| **Countdown** | Live countdown to drop date (configurable via env) |
+| **Countdown** | Live countdown to the Collection 01 launch date |
 | **Email Signup** | Waitlist form with loading/success/error states |
 | **Footer** | Social links, legal links, copyright |
 

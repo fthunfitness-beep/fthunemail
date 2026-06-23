@@ -66,7 +66,7 @@ export async function POST(request: Request) {
     const { error: emailError } = await resend.emails.send({
       from: RESEND_FROM,
       to: email,
-      subject: "You kept showing up",
+      subject: "Do not stop halfway",
       html: getWelcomeEmailHtml(email),
       text: getWelcomeEmailText(email),
     });

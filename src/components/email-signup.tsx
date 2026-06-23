@@ -54,14 +54,14 @@ export function EmailSignup() {
       <div className="mx-auto max-w-xl text-center">
         <SectionReveal>
           <p className="mb-3 text-[9px] font-medium uppercase tracking-[0.25em] text-zinc-600">
-            Join Us
+            Hold Your Place
           </p>
           <h2 className="font-display text-[clamp(1.6rem,3vw,2.4rem)] font-normal tracking-tight text-zinc-200">
-            Be Part of the First Drop
+            Get the First Drop Before It Moves
           </h2>
           <p className="mt-4 text-sm text-zinc-500">
-            We&apos;re building this together. Get early access when Collection 01
-            lands, plus behind-the-scenes from the build.
+            Join the early list for launch access, fit notes, and the build
+            behind Collection 01.
           </p>
         </SectionReveal>
 

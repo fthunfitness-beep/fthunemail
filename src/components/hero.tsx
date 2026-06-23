@@ -53,7 +53,7 @@ export function Hero() {
               transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="font-display text-[clamp(1.5rem,3.2vw,2.75rem)] font-medium leading-[1.05] tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)]"
             >
-              Built for the ones who show up.
+              For the rep you almost skipped.
             </motion.h1>
           </div>
 
